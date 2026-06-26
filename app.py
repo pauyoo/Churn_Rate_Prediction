@@ -5,7 +5,7 @@ import joblib
 
 # PAGE CONFIGURATION
 st.set_page_config(
-    page_title="Insurance Churn Predictor",
+    page_title="Insurance Claim Prediction",
     page_icon="📋",
     layout="centered"
 )
@@ -31,8 +31,8 @@ def load_model_assets():
 rf_model, lr_model, scaler = load_model_assets()
 
 # HEADER SECTION
-st.title("📋 Insurance Risk & Churn Assessment Panel")
-st.write("Input a policyholder's details below to evaluate their risk profiling matrix.")
+st.title("📋 Insurance Claim Prediction")
+st.write("Input a policyholder's details below.")
 
 # SIDEBAR / MODEL SELECTION CONFIGURATION
 st.sidebar.header("🛠️ Model Configuration")
@@ -134,6 +134,6 @@ if submit_button:
         else:
             st.success(f"✅ **Result Status: LOW RISK / STANDARD RETENTION LEVEL**")
             st.progress(float(probability_score))
-            st.write(f"The structural algorithm calculated a **{probability_score * 100:.2f}%** risk probability score.")
+            st.write(f"The structural algorithm calculated a **{probability_score * 100:.2f}%** claim prediction.")
 
         st.caption("ℹ️ *This metric matrix serves as visual assistance software and is optimized for automated data analytics purposes only.*")
