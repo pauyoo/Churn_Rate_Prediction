@@ -20,8 +20,8 @@ def load_model_assets():
     try:
         # Load your trained model files (Make sure these names match your saved filenames exactly)
         rf_model = joblib.load('random_forest_model.pkl')
-        lr_model = joblib.load('Regression_model.pkl') 
-        scaler = joblib.load('Regression_scaler.pkl')
+        lr_model = joblib.load('regression_model.pkl') 
+        scaler = joblib.load('scaler.pkl')
         return rf_model, lr_model, scaler
     except Exception as e:
         st.error(f"Error loading model files: {e}")
