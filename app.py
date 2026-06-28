@@ -5,7 +5,7 @@ import joblib
 
 # PAGE CONFIGURATION
 st.set_page_config(
-    page_title="Customer Churn Prediction",
+    page_title="Insurance Churn Prediction",
     page_icon="📋",
     layout="centered"
 )
@@ -31,8 +31,8 @@ def load_model_assets():
 rf_model, lr_model, scaler = load_model_assets()
 
 # HEADER SECTION
-st.title("📋 Insurance Churn Prediction Model")
-st.write("Input a Policyholder's details below.")
+st.title("📋 Insurance Churn Prediction")
+st.write("Input a policyholder's details below.")
 
 # SIDEBAR / MODEL SELECTION CONFIGURATION
 st.sidebar.header("🛠️ Model Configuration")
@@ -57,12 +57,12 @@ with st.form("input_form"):
     col1, col2, col3 = st.columns(3)
     
     with col1:
-        credit_score = st.number_input("Credit Score", min_value=300, max_value=850, value=650, step=1)
+        credit_score = st.number_input("Credit Score", min_value=0, max_value=900, value=650, step=1)
         age = st.number_input("Age (Years)", min_value=15, max_value=100, value=35, step=1)
         tenure = st.number_input("Tenure (Years with Firm)", min_value=0, max_value=20, value=3, step=1)
 
     with col2:
-        balance = st.number_input("Account Balance ($)", min_value=0.0, value=250000.0, step=500.0)
+        balance = st.number_input("Account Balance ($)", min_value=0.0, value=25000.0, step=500.0)
         estimated_salary = st.number_input("Estimated Annual Salary ($)", min_value=0.0, value=65000.0, step=500.0)
         num_products = st.number_input("Number of Products Held", min_value=1, max_value=5, value=1, step=1)
 
@@ -128,12 +128,12 @@ if submit_button:
         
         # Display results cleanly based on risk state threshold
         if prediction == 1:
-            st.error(f"⚠️ **Result Status: HIGH RISK OF CHURN / CLAIM EXPECTED**")
+            st.error(f"⚠️ **HIGH RISK OF POLICY CANCELLATION / CHURN**")
             st.progress(float(probability_score))
             st.write(f"The structural algorithm calculated a **{probability_score * 100:.2f}%** operational risk probability score.")
         else:
-            st.success(f"✅ **Result Status: LOW RISK / STANDARD RETENTION LEVEL**")
+            st.success(f"✅ **Result Status: LOW RISK / RENEWAL EXPECTED**")
             st.progress(float(probability_score))
-            st.write(f"The structural algorithm calculated a **{probability_score * 100:.2f}%** claim prediction.")
+            st.write(f"The structural algorithm calculated a **{probability_score * 100:.2f}%** Churn prediction.")
 
         st.caption("ℹ️ *This metric matrix serves as visual assistance software and is optimized for automated data analytics purposes only.*")
